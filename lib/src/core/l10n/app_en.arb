@@ -1,0 +1,101 @@
+{
+  "appName": "Smart Kitchen",
+
+  "kitchenTitle": "Kitchen",
+  "recipesTitle": "Recipes",
+  "roomsTitle": "Rooms",
+  "storageUnitsTitle": "Storage units",
+  "allProductsTitle": "All Products",
+  "categoryTitle": "Category",
+
+  "barcodeTitle": "Scan product",
+  "modifyProductTitle": "Modify Product",
+  "addProductTitle": "Add new product",
+
+  "categoryPrefix": "category:",
+
+  "roomLabel": "room",
+  "storageUnitLabel": "storage unit",
+  "productLabel": "product",
+
+  "productNameLabel": "Product name",
+  "amountLabel": "Amount",
+  "inputDateLabel": "Input date",
+  "expiryDateLabel": "Expiry date",
+  "detailsLabel": "Details",
+  "storageLabel": "Storage",
+  "barcodeLabel": "Scan barcode",
+
+  "noRoomLabel": "No room",
+  "noStorageUnitLabel": "No storage unit",
+  "notIncludedLabel": "Not included",
+  "noDateLabel": "No date selected",
+
+  "newRoomHint": "Add a new room",
+  "newStorageUnitHint": "Add a new storage unit",
+  "searchHint": "Search",
+
+  "deleteButton": "Delete",
+  "cancelButton": "Cancel",
+  "updateProductButton": "Update product",
+  "addProductButton": "Add product",
+  "dateButton": "Select date",
+
+  "errorBarcode": "Barcode not detected",
+  "errorInternet": "No internet access. Couldn\\'t fetch product info",
+  "errorProductInfo": "Couldn\\'t find info about the product :(",
+  "errorInvalidInfo": "Some information are invalid",
+  "errorNoValue": "Enter value",
+  "errorEmptyName": "Name cannot be empty",
+
+  "deleteProductAlertTitle": "Are you sure you want to delete this product?",
+  "deleteProductAlertContent": "This action cannot be undone.",
+  "deleteContainerAlertTitle": "Are you sure you want to delete this {deletedObject}?",
+  "@deleteContainerAlertTitle": {
+    "placeholders": {
+      "deletedObject": {
+        "type": "String",
+        "example": "container"
+      }
+    }
+  },
+  "deleteContainerAlertContent": "If you delete this {deletedObject}, other components that rely on this {deletedObject} will be also deleted.",
+  "@deleteContainerAlertContent": {
+    "placeholders": {
+      "deletedObject": {
+        "type": "String",
+        "example": "container"
+      }
+    }
+  },
+
+  "successCreateRoom": "Room successfully created!",
+  "successDeleteRoom": "Room successfully deleted!",
+  "successUpdateRoom": "Room successfully updated!",
+
+  "exceptionFetchRooms": "Failed to fetch rooms:",
+  "exceptionEditRoom": "Failed to edit room:",
+  "exceptionCreateRoom": "Failed to create room:",
+  "exceptionDeleteRoom": "Failed to delete room:",
+  "exceptionUpdateRoom": "Failed to update room:",
+
+  "successCreateStorageUnit": "Storage unit successfully created!",
+  "successDeleteStorageUnit": "Storage unit successfully deleted!",
+  "successUpdateStorageUnit": "Storage unit successfully updated!",
+
+  "exceptionFetchStorageUnits": "Failed to fetch storage units:",
+  "exceptionEditStorageUnit": "Failed to edit storage unit:",
+  "exceptionCreateStorageUnit": "Failed to create storage unit:",
+  "exceptionDeleteStorageUnit": "Failed to delete storage unit:",
+  "exceptionUpdateStorageUnit": "Failed to update storage unit:",
+
+  "successCreateProducts": "Product successfully created!",
+  "successDeleteProduct": "Product successfully deleted!",
+  "successUpdateProduct": "Product successfully updated!",
+
+  "exceptionFetchProduct": "Failed to fetch products:",
+  "exceptionEditProduct": "Failed to edit product:",
+  "exceptionCreateProduct": "Product successfully created!",
+  "exceptionDeleteProduct": "Failed to delete product:",
+  "exceptionUpdateProduct": "Failed to update product:"
+}
