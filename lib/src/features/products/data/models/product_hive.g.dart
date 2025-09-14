@@ -8,7 +8,7 @@ part of 'product_hive.dart';
 
 class ProductHiveAdapter extends TypeAdapter<ProductHive> {
   @override
-  final int typeId = 2;
+  final typeId = 2;
 
   @override
   ProductHive read(BinaryReader reader) {
@@ -17,14 +17,14 @@ class ProductHiveAdapter extends TypeAdapter<ProductHive> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return ProductHive(
-      fields[0] as int,
+      (fields[0] as num).toInt(),
       fields[1] as String,
       fields[2] as String,
-      fields[5] as int,
+      (fields[5] as num).toInt(),
       fields[3] as DateTime?,
       fields[4] as DateTime?,
-      fields[6] as int?,
-      fields[7] as int?,
+      (fields[6] as num?)?.toInt(),
+      (fields[7] as num?)?.toInt(),
     );
   }
 

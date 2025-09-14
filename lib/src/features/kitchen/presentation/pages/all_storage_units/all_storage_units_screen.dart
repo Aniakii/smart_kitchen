@@ -24,10 +24,8 @@ class AllStorageUnitsScreen extends StatefulWidget {
 }
 
 class _AllRoomsScreenState extends State<AllStorageUnitsScreen> {
-  final TextEditingController _newStorageUnitController =
-      TextEditingController();
-  final TextEditingController _editStorageUnitController =
-      TextEditingController();
+  final _newStorageUnitController = TextEditingController();
+  final _editStorageUnitController = TextEditingController();
 
   @override
   void initState() {
@@ -57,101 +55,98 @@ class _AllRoomsScreenState extends State<AllStorageUnitsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<StorageUnitsBloc, StorageUnitsState>(
+    return BlocConsumer<StorageUnitsBloc, StorageUnitsState>(
       listener: (context, state) => _listener(context, state),
-      child: BlocBuilder<StorageUnitsBloc, StorageUnitsState>(
-        builder: (context, state) {
-          if (state.isLoading) {
-            return Center(child: CircularProgressIndicator());
-          } else {
-            return Column(
-              children: [
-                AddContainerWidget(
-                  newRoomController: _newStorageUnitController,
-                  addFunction: () {
-                    context.read<StorageUnitsBloc>().add(
-                      CreateStorageUnitEvent(_newStorageUnitController.text),
-                    );
-                  },
-                  hintText: AppLocalizations.of(context)!.newStorageUnitHint,
-                ),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: state.allStorageUnits.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      final presentedStorageUnit = state.allStorageUnits[index];
+      builder: (context, state) {
+        if (state.isLoading) {
+          return Center(child: CircularProgressIndicator());
+        } else {
+          return Column(
+            children: [
+              AddContainerWidget(
+                newRoomController: _newStorageUnitController,
+                addFunction: () {
+                  context.read<StorageUnitsBloc>().add(
+                    CreateStorageUnitEvent(_newStorageUnitController.text),
+                  );
+                },
+                hintText: AppLocalizations.of(context)!.newStorageUnitHint,
+              ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: state.allStorageUnits.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final presentedStorageUnit = state.allStorageUnits[index];
 
-                      if (state.editingStorageUnitId ==
-                          presentedStorageUnit.id) {
-                        _editStorageUnitController.text =
-                            presentedStorageUnit.name;
-                        return EditNameWidget(
-                          editRoomController: _editStorageUnitController,
-                          updateNameFunction: () {
-                            context.read<StorageUnitsBloc>().add(
-                              UpdateStorageUnitNameEvent(
-                                presentedStorageUnit.id,
-                                _editStorageUnitController.text,
-                              ),
-                            );
-                          },
-                        );
-                      } else {
-                        return ContainerTileWidget<ProductsBloc, ProductsState>(
-                          name: presentedStorageUnit.name,
-                          subtitle: AppLocalizations.of(context)!.productLabel,
-                          selector: (state, context) {
-                            if (state.isLoading) {
-                              return context
-                                  .read<ProductsBloc>()
-                                  .getAllProducts()
-                                  .where(
-                                    (p) =>
-                                        p.storageUnitId ==
-                                        presentedStorageUnit.id,
-                                  )
-                                  .length;
-                            } else {
-                              return state.allProducts
-                                  .where(
-                                    (p) =>
-                                        p.storageUnitId ==
-                                        presentedStorageUnit.id,
-                                  )
-                                  .length;
-                            }
-                          },
-                          onSelect: () {
-                            context.router.push(
-                              StorageUnitsDetailsRoute(
-                                selectedRoom: widget.selectedRoom,
-                                selectedStorageUnit: presentedStorageUnit,
-                              ),
-                            );
-                          },
-                          onEdit: () {
-                            context.read<StorageUnitsBloc>().add(
-                              StartEditingStorageUnitNameEvent(
-                                presentedStorageUnit.id,
-                              ),
-                            );
-                          },
-                          onDelete: () {
-                            context.read<StorageUnitsBloc>().add(
-                              DeleteStorageUnitEvent(presentedStorageUnit.id),
-                            );
-                          },
-                          icon: Icons.inventory,
-                        );
-                      }
-                    },
-                  ),
+                    if (state.editingStorageUnitId == presentedStorageUnit.id) {
+                      _editStorageUnitController.text =
+                          presentedStorageUnit.name;
+                      return EditNameWidget(
+                        editRoomController: _editStorageUnitController,
+                        updateNameFunction: () {
+                          context.read<StorageUnitsBloc>().add(
+                            UpdateStorageUnitNameEvent(
+                              presentedStorageUnit.id,
+                              _editStorageUnitController.text,
+                            ),
+                          );
+                        },
+                      );
+                    } else {
+                      return ContainerTileWidget<ProductsBloc, ProductsState>(
+                        name: presentedStorageUnit.name,
+                        subtitle: AppLocalizations.of(context)!.productLabel,
+                        selector: (state, context) {
+                          if (state.isLoading) {
+                            return context
+                                .read<ProductsBloc>()
+                                .getAllProducts()
+                                .where(
+                                  (p) =>
+                                      p.storageUnitId ==
+                                      presentedStorageUnit.id,
+                                )
+                                .length;
+                          } else {
+                            return state.allProducts
+                                .where(
+                                  (p) =>
+                                      p.storageUnitId ==
+                                      presentedStorageUnit.id,
+                                )
+                                .length;
+                          }
+                        },
+                        onSelect: () {
+                          context.router.push(
+                            StorageUnitsDetailsRoute(
+                              selectedRoom: widget.selectedRoom,
+                              selectedStorageUnit: presentedStorageUnit,
+                            ),
+                          );
+                        },
+                        onEdit: () {
+                          context.read<StorageUnitsBloc>().add(
+                            StartEditingStorageUnitNameEvent(
+                              presentedStorageUnit.id,
+                            ),
+                          );
+                        },
+                        onDelete: () {
+                          context.read<StorageUnitsBloc>().add(
+                            DeleteStorageUnitEvent(presentedStorageUnit.id),
+                          );
+                        },
+                        icon: Icons.inventory,
+                      );
+                    }
+                  },
                 ),
-              ],
-            );
-          }
-        },
-      ),
+              ),
+            ],
+          );
+        }
+      },
     );
   }
 }

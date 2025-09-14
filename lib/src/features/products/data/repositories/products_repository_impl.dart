@@ -12,8 +12,7 @@ class ProductsRepositoryImpl implements ProductsRepository {
   @override
   List<Product> getProducts() {
     final productsHive = localDataSource.loadProducts();
-
-    List<Product> products = [];
+    final products = <Product>[];
 
     for (ProductHive productHive in productsHive) {
       products.add(ProductMapper.toEntity(productHive));
@@ -24,8 +23,7 @@ class ProductsRepositoryImpl implements ProductsRepository {
   @override
   List<Product> getProductsByRoom(int roomId) {
     final productsHive = localDataSource.loadProducts();
-
-    List<Product> products = [];
+    final products = <Product>[];
 
     for (ProductHive productHive in productsHive) {
       if (productHive.roomId == roomId) {
@@ -38,8 +36,7 @@ class ProductsRepositoryImpl implements ProductsRepository {
   @override
   List<Product> getProductsByStorageUnit(int storageUnitId) {
     final productsHive = localDataSource.loadProducts();
-
-    List<Product> products = [];
+    final products = <Product>[];
 
     for (ProductHive productHive in productsHive) {
       if (productHive.storageUnitId == storageUnitId) {

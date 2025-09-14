@@ -35,7 +35,7 @@ extension CategoryProductsX on CategoryProducts {
   IconData get icon {
     switch (this) {
       case CategoryProducts.fish:
-        return Icons.set_meal; // 🐟
+        return Icons.set_meal;
       case CategoryProducts.cannedFoods:
         return Icons.inventory_2;
       case CategoryProducts.fruits:

@@ -86,44 +86,40 @@ class _AllProductsScreenState extends State<AllProductsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<ProductsBloc, ProductsState>(
+    return BlocConsumer<ProductsBloc, ProductsState>(
       listener: (context, state) => _listener(context, state),
-      child: BlocBuilder<ProductsBloc, ProductsState>(
-        builder: (context, state) {
-          if (state.isLoading) {
-            return Center(child: CircularProgressIndicator());
-          } else {
-            return Scaffold(
-              body: Column(
-                children: [
-                  SearchProductWidget(
-                    onChanged: (query) {
-                      context.read<ProductsBloc>().add(
-                        SearchProductEvent(query),
-                      );
-                    },
-                  ),
-                  ProductsListWidget(
-                    presentedProducts: state.presentedProducts,
-                    onSelect: (int id) {
-                      context.router.push(
-                        ProductDetailsRoute(selectedProductId: id),
-                      );
-                    },
-                    onDelete: (int id) {
-                      context.read<ProductsBloc>().add(DeleteProductEvent(id));
-                    },
-                  ),
-                ],
-              ),
-              floatingActionButton: FloatingActionButton(
-                onPressed: _addProduct,
-                child: const Icon(Icons.add),
-              ),
-            );
-          }
-        },
-      ),
+      builder: (context, state) {
+        if (state.isLoading) {
+          return Center(child: CircularProgressIndicator());
+        } else {
+          return Scaffold(
+            body: Column(
+              children: [
+                SearchProductWidget(
+                  onChanged: (query) {
+                    context.read<ProductsBloc>().add(SearchProductEvent(query));
+                  },
+                ),
+                ProductsListWidget(
+                  presentedProducts: state.presentedProducts,
+                  onSelect: (int id) {
+                    context.router.push(
+                      ProductDetailsRoute(selectedProductId: id),
+                    );
+                  },
+                  onDelete: (int id) {
+                    context.read<ProductsBloc>().add(DeleteProductEvent(id));
+                  },
+                ),
+              ],
+            ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: _addProduct,
+              child: const Icon(Icons.add),
+            ),
+          );
+        }
+      },
     );
   }
 }

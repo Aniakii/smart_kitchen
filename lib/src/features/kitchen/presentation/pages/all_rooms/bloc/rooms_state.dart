@@ -21,6 +21,8 @@ class RoomsState with _$RoomsState {
     lastActionMessage: null,
   );
 
+  Room getRoomById(int id) => allRooms.firstWhere((r) => r.id == id);
+
   @override
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }

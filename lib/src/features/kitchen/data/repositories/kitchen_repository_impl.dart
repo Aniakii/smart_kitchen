@@ -15,8 +15,7 @@ class KitchenRepositoryImpl implements KitchenRepository {
   @override
   List<Room> getRooms() {
     final roomsHive = localDataSource.loadRooms();
-
-    List<Room> rooms = [];
+    final rooms = <Room>[];
 
     for (RoomHive roomHive in roomsHive) {
       rooms.add(RoomMapper.toEntity(roomHive));
@@ -33,7 +32,7 @@ class KitchenRepositoryImpl implements KitchenRepository {
   List<StorageUnit> getStorageUnits() {
     final storageUnitsHive = localDataSource.loadStorageUnits();
 
-    List<StorageUnit> storageUnits = [];
+    final storageUnits = <StorageUnit>[];
 
     for (StorageUnitHive storageUnitHive in storageUnitsHive) {
       storageUnits.add(StorageUnitMapper.toEntity(storageUnitHive));
@@ -71,7 +70,7 @@ class KitchenRepositoryImpl implements KitchenRepository {
   @override
   List<StorageUnit> getStorageUnitsByRoomId(int id) {
     final allStorageUnits = localDataSource.loadStorageUnits();
-    final List<StorageUnit> storageUnitsByRoomId = [];
+    final storageUnitsByRoomId = <StorageUnit>[];
     for (StorageUnitHive storageUnitHive in allStorageUnits) {
       if (storageUnitHive.roomId == id) {
         storageUnitsByRoomId.add(StorageUnitMapper.toEntity(storageUnitHive));

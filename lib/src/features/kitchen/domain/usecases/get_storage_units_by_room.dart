@@ -6,7 +6,5 @@ class GetStorageUnitsByRoom {
 
   GetStorageUnitsByRoom(this.repository);
 
-  List<StorageUnit> call(int id) {
-    return repository.getStorageUnitsByRoomId(id);
-  }
+  List<StorageUnit> call(int id) => repository.getStorageUnitsByRoomId(id);
 }

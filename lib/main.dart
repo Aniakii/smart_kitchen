@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive_ce_flutter/adapters.dart';
 import 'package:smart_kitchen/src/app/theme/app_theme.dart';
 import 'package:smart_kitchen/src/core/l10n/app_localizations.dart';
 import 'package:smart_kitchen/src/core/routing/app_router.dart';
@@ -15,7 +15,6 @@ import 'package:smart_kitchen/src/features/kitchen/domain/usecases/delete_storag
 import 'package:smart_kitchen/src/features/kitchen/domain/usecases/get_rooms.dart';
 import 'package:smart_kitchen/src/features/kitchen/domain/usecases/get_storage_units.dart';
 import 'package:smart_kitchen/src/features/kitchen/domain/usecases/get_storage_units_by_room.dart';
-import 'package:smart_kitchen/src/features/kitchen/domain/usecases/get_storage_units_count.dart';
 import 'package:smart_kitchen/src/features/kitchen/domain/usecases/update_room.dart';
 import 'package:smart_kitchen/src/features/kitchen/domain/usecases/update_storage_unit.dart';
 import 'package:smart_kitchen/src/features/kitchen/presentation/pages/all_rooms/bloc/rooms_bloc.dart';
@@ -38,38 +37,39 @@ void main() async {
   final kitchenLocalDataSource = KitchenLocalDataSource();
   final productsLocalDataSource = ProductsLocalDataSource();
 
-  await kitchenLocalDataSource.initializeDatabase();
-  await productsLocalDataSource.initializeDatabase();
-
-  final kitchenRepository = KitchenRepositoryImpl(kitchenLocalDataSource);
-  final productsRepository = ProductsRepositoryImpl(productsLocalDataSource);
+  await Future.wait([
+    kitchenLocalDataSource.initializeDatabase(),
+    productsLocalDataSource.initializeDatabase(),
+  ]);
 
   runApp(
     MyApp(
-      kitchenRepository: kitchenRepository,
-      productsRepository: productsRepository,
+      kitchenDataSource: kitchenLocalDataSource,
+      productsDataSource: productsLocalDataSource,
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
-  final KitchenRepository kitchenRepository;
-  final ProductsRepository productsRepository;
+  final KitchenLocalDataSource kitchenDataSource;
+  final ProductsLocalDataSource productsDataSource;
   final _appRouter = AppRouter();
 
   MyApp({
     super.key,
-    required this.kitchenRepository,
-    required this.productsRepository,
+    required this.kitchenDataSource,
+    required this.productsDataSource,
   });
 
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
-        RepositoryProvider<KitchenRepository>(create: (_) => kitchenRepository),
+        RepositoryProvider<KitchenRepository>(
+          create: (_) => KitchenRepositoryImpl(kitchenDataSource),
+        ),
         RepositoryProvider<ProductsRepository>(
-          create: (_) => productsRepository,
+          create: (_) => ProductsRepositoryImpl(productsDataSource),
         ),
       ],
       child: MultiBlocProvider(
@@ -83,7 +83,6 @@ class MyApp extends StatelessWidget {
                 context.read<KitchenRepository>(),
                 context.read<ProductsRepository>(),
               ),
-              GetStorageUnitsCount(context.read<KitchenRepository>()),
             ),
           ),
           BlocProvider(

@@ -1,4 +1,4 @@
-import 'package:hive/hive.dart';
+import 'package:hive_ce/hive.dart';
 import 'package:smart_kitchen/src/features/products/data/datasources/products_data_source.dart';
 import '../models/product_hive.dart';
 
@@ -13,24 +13,18 @@ class ProductsLocalDataSource implements ProductsDataSource {
   }
 
   @override
-  List<ProductHive> loadProducts() {
-    return productsBox.values.toList();
-  }
+  List<ProductHive> loadProducts() => productsBox.values.toList();
 
   @override
-  Future<void> updateProduct(ProductHive product) async {
-    await productsBox.put(product.id, product);
-  }
+  Future<void> updateProduct(ProductHive product) async =>
+      await productsBox.put(product.id, product);
 
   @override
-  Future<void> deleteProduct(int id) async {
-    await productsBox.delete(id);
-  }
+  Future<void> deleteProduct(int id) async => await productsBox.delete(id);
 
   @override
-  Future<void> saveProduct(ProductHive product) async {
-    await productsBox.put(product.id, product);
-  }
+  Future<void> saveProduct(ProductHive product) async =>
+      await productsBox.put(product.id, product);
 
   @override
   Future<void> deleteByRoomId(int roomId) async {

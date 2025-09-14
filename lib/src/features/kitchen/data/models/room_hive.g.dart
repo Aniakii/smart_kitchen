@@ -8,7 +8,7 @@ part of 'room_hive.dart';
 
 class RoomHiveAdapter extends TypeAdapter<RoomHive> {
   @override
-  final int typeId = 0;
+  final typeId = 0;
 
   @override
   RoomHive read(BinaryReader reader) {
@@ -16,10 +16,7 @@ class RoomHiveAdapter extends TypeAdapter<RoomHive> {
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return RoomHive(
-      fields[0] as int,
-      fields[1] as String,
-    );
+    return RoomHive((fields[0] as num).toInt(), fields[1] as String);
   }
 
   @override

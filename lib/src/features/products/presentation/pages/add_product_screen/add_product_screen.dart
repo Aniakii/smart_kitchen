@@ -40,11 +40,11 @@ class AddProductScreen extends StatefulWidget {
 
 class _AddProductScreenState extends State<AddProductScreen> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _categoryController = TextEditingController();
-  final TextEditingController _roomController = TextEditingController();
-  final TextEditingController _storageUnitController = TextEditingController();
-  final TextEditingController _amountController = TextEditingController();
+  final _nameController = TextEditingController();
+  final _categoryController = TextEditingController();
+  final _roomController = TextEditingController();
+  final _storageUnitController = TextEditingController();
+  final _amountController = TextEditingController();
 
   CategoryProducts category = CategoryProducts.other;
   String name = '';

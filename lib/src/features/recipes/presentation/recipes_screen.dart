@@ -6,8 +6,6 @@ class RecipesScreen extends StatelessWidget {
   const RecipesScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return 
-      Scaffold(body: Text('Not implemented yet'),);
-  }
+  Widget build(BuildContext context) =>
+      Scaffold(body: Text('Not implemented yet'));
 }

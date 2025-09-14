@@ -5,7 +5,6 @@ class UpdateRoom {
 
   UpdateRoom(this.repository);
 
-  Future<void> call(int roomId, String name) async {
-    return await repository.updateRoom(roomId, name);
-  }
+  Future<void> call(int roomId, String name) async =>
+      await repository.updateRoom(roomId, name);
 }

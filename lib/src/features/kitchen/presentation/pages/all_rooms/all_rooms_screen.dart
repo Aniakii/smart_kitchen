@@ -21,8 +21,8 @@ class AllRoomsScreen extends StatefulWidget {
 }
 
 class _AllRoomsScreenState extends State<AllRoomsScreen> {
-  final TextEditingController _newRoomController = TextEditingController();
-  final TextEditingController _editRoomController = TextEditingController();
+  final _newRoomController = TextEditingController();
+  final _editRoomController = TextEditingController();
 
   @override
   void initState() {
@@ -50,85 +50,81 @@ class _AllRoomsScreenState extends State<AllRoomsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<RoomsBloc, RoomsState>(
+    return BlocConsumer<RoomsBloc, RoomsState>(
       listener: (context, state) => _listener(context, state),
-      child: BlocBuilder<RoomsBloc, RoomsState>(
-        builder: (context, state) {
-          if (state.isLoading) {
-            return Center(child: CircularProgressIndicator());
-          } else {
-            return Column(
-              children: [
-                AddContainerWidget(
-                  newRoomController: _newRoomController,
-                  addFunction: () {
-                    context.read<RoomsBloc>().add(
-                      CreateRoomEvent(_newRoomController.text),
-                    );
-                  },
-                  hintText: AppLocalizations.of(context)!.newRoomHint,
-                ),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: state.allRooms.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      final presentedRoom = state.allRooms[index];
+      builder: (context, state) {
+        if (state.isLoading) {
+          return Center(child: CircularProgressIndicator());
+        } else {
+          return Column(
+            children: [
+              AddContainerWidget(
+                newRoomController: _newRoomController,
+                addFunction: () {
+                  context.read<RoomsBloc>().add(
+                    CreateRoomEvent(_newRoomController.text),
+                  );
+                },
+                hintText: AppLocalizations.of(context)!.newRoomHint,
+              ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: state.allRooms.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final presentedRoom = state.allRooms[index];
 
-                      if (state.editingRoomId == presentedRoom.id) {
-                        _editRoomController.text = presentedRoom.name;
-                        return EditNameWidget(
-                          editRoomController: _editRoomController,
-                          updateNameFunction: () {
-                            context.read<RoomsBloc>().add(
-                              UpdateRoomNameEvent(
-                                presentedRoom.id,
-                                _editRoomController.text,
-                              ),
-                            );
-                          },
-                        );
-                      } else {
-                        return ContainerTileWidget<
-                          StorageUnitsBloc,
-                          StorageUnitsState
-                        >(
-                          name: presentedRoom.name,
-                          subtitle: AppLocalizations.of(
-                            context,
-                          )!.storageUnitLabel,
-                          selector: (state, context) {
-                            return context
-                                .read<StorageUnitsBloc>()
-                                .getAllStorageUnits()
-                                .where((s) => s.roomId == presentedRoom.id)
-                                .length;
-                          },
-                          onSelect: () {
-                            context.router.push(
-                              RoomDetailsRoute(selectedRoom: presentedRoom),
-                            );
-                          },
-                          onEdit: () {
-                            context.read<RoomsBloc>().add(
-                              StartEditingRoomNameEvent(presentedRoom.id),
-                            );
-                          },
-                          onDelete: () {
-                            context.read<RoomsBloc>().add(
-                              DeleteRoomEvent(presentedRoom.id),
-                            );
-                          },
-                          icon: Icons.meeting_room,
-                        );
-                      }
-                    },
-                  ),
+                    if (state.editingRoomId == presentedRoom.id) {
+                      _editRoomController.text = presentedRoom.name;
+                      return EditNameWidget(
+                        editRoomController: _editRoomController,
+                        updateNameFunction: () {
+                          context.read<RoomsBloc>().add(
+                            UpdateRoomNameEvent(
+                              presentedRoom.id,
+                              _editRoomController.text,
+                            ),
+                          );
+                        },
+                      );
+                    } else {
+                      return ContainerTileWidget<
+                        StorageUnitsBloc,
+                        StorageUnitsState
+                      >(
+                        name: presentedRoom.name,
+                        subtitle: AppLocalizations.of(
+                          context,
+                        )!.storageUnitLabel,
+                        selector: (state, context) => context
+                            .read<StorageUnitsBloc>()
+                            .getAllStorageUnits()
+                            .where((s) => s.roomId == presentedRoom.id)
+                            .length,
+                        onSelect: () {
+                          context.router.push(
+                            RoomDetailsRoute(selectedRoom: presentedRoom),
+                          );
+                        },
+                        onEdit: () {
+                          context.read<RoomsBloc>().add(
+                            StartEditingRoomNameEvent(presentedRoom.id),
+                          );
+                        },
+                        onDelete: () {
+                          context.read<RoomsBloc>().add(
+                            DeleteRoomEvent(presentedRoom.id),
+                          );
+                        },
+                        icon: Icons.meeting_room,
+                      );
+                    }
+                  },
                 ),
-              ],
-            );
-          }
-        },
-      ),
+              ),
+            ],
+          );
+        }
+      },
     );
   }
 }

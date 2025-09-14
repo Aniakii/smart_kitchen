@@ -6,7 +6,5 @@ class GetStorageUnits {
 
   GetStorageUnits(this.repository);
 
-  List<StorageUnit> call() {
-    return repository.getStorageUnits();
-  }
+  List<StorageUnit> call() => repository.getStorageUnits();
 }

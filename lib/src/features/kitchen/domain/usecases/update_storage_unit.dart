@@ -5,7 +5,6 @@ class UpdateStorageUnit {
 
   UpdateStorageUnit(this.repository);
 
-  Future<void> call(int storageUnitId, String name) async {
-    return await repository.updateStorageUnit(storageUnitId, name);
-  }
+  Future<void> call(int storageUnitId, String name) async =>
+      await repository.updateStorageUnit(storageUnitId, name);
 }

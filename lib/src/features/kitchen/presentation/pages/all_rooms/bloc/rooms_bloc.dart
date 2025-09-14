@@ -1,9 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_kitchen/src/features/kitchen/domain/usecases/create_room.dart';
 import 'package:smart_kitchen/src/features/kitchen/domain/usecases/delete_room.dart';
-import 'package:smart_kitchen/src/features/kitchen/domain/usecases/get_storage_units_count.dart';
 import 'package:smart_kitchen/src/features/kitchen/domain/usecases/update_room.dart';
-import '../../../../domain/entities/room.dart';
 import '../../../../domain/usecases/get_rooms.dart';
 import 'rooms_event.dart';
 import 'rooms_state.dart';
@@ -13,14 +11,12 @@ class RoomsBloc extends Bloc<RoomsEvent, RoomsState> {
   final UpdateRoom _updateRoom;
   final CreateRoom _createRoom;
   final DeleteRoom _deleteRoom;
-  final GetStorageUnitsCount _getStorageUnitsCount;
 
   RoomsBloc(
     this._getRooms,
     this._updateRoom,
     this._createRoom,
     this._deleteRoom,
-    this._getStorageUnitsCount,
   ) : super(RoomsState.initial()) {
     on<CreateInitialStateEvent>(_createInitialState);
     on<StartEditingRoomNameEvent>(_onEditRoomNameEvent);
@@ -30,22 +26,10 @@ class RoomsBloc extends Bloc<RoomsEvent, RoomsState> {
     on<ResetLastActionMessageEvent>(_onResetLastActionMessageEvent);
   }
 
-  Room getRoomById(int id) {
-    return state.allRooms.firstWhere((r) => r.id == id);
-  }
-
-  List<Room> getAllRooms() {
-    return state.allRooms;
-  }
-
-  int getCount(int id) {
-    return _getStorageUnitsCount(id);
-  }
-
   void _createInitialState(
     CreateInitialStateEvent event,
     Emitter<RoomsState> emit,
-  ) async {
+  ) {
     try {
       final rooms = _getRooms();
 
@@ -82,7 +66,7 @@ class RoomsBloc extends Bloc<RoomsEvent, RoomsState> {
     }
   }
 
-  void _onUpdateRoomNameEvent(
+  Future<void> _onUpdateRoomNameEvent(
     UpdateRoomNameEvent event,
     Emitter<RoomsState> emit,
   ) async {
@@ -107,7 +91,7 @@ class RoomsBloc extends Bloc<RoomsEvent, RoomsState> {
     }
   }
 
-  void _onDeleteRoomEvent(
+  Future<void> _onDeleteRoomEvent(
     DeleteRoomEvent event,
     Emitter<RoomsState> emit,
   ) async {
@@ -131,7 +115,7 @@ class RoomsBloc extends Bloc<RoomsEvent, RoomsState> {
     }
   }
 
-  void _onCreateRoomEvent(
+  Future<void> _onCreateRoomEvent(
     CreateRoomEvent event,
     Emitter<RoomsState> emit,
   ) async {

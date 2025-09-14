@@ -36,10 +36,6 @@ class StorageUnitsBloc extends Bloc<StorageUnitsEvent, StorageUnitsState> {
     return _getStorageUnits();
   }
 
-  StorageUnit getStorageUnitById(int id) {
-    return state.allStorageUnits.firstWhere((s) => s.id == id);
-  }
-
   void _createInitialState(
     CreateInitialStateEvent event,
     Emitter<StorageUnitsState> emit,
@@ -87,7 +83,7 @@ class StorageUnitsBloc extends Bloc<StorageUnitsEvent, StorageUnitsState> {
     }
   }
 
-  void _onUpdateStorageUnitNameEvent(
+  Future<void> _onUpdateStorageUnitNameEvent(
     UpdateStorageUnitNameEvent event,
     Emitter<StorageUnitsState> emit,
   ) async {
@@ -112,7 +108,7 @@ class StorageUnitsBloc extends Bloc<StorageUnitsEvent, StorageUnitsState> {
     }
   }
 
-  void _onDeleteStorageUnitEvent(
+  Future<void> _onDeleteStorageUnitEvent(
     DeleteStorageUnitEvent event,
     Emitter<StorageUnitsState> emit,
   ) async {
@@ -136,7 +132,7 @@ class StorageUnitsBloc extends Bloc<StorageUnitsEvent, StorageUnitsState> {
     }
   }
 
-  void _onCreateStorageUnitEvent(
+  Future<void> _onCreateStorageUnitEvent(
     CreateStorageUnitEvent event,
     Emitter<StorageUnitsState> emit,
   ) async {

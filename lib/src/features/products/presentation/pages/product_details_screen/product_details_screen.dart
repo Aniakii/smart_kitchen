@@ -12,7 +12,6 @@ import '../../../domain/entities/product.dart';
 import '../../dtos/new_product_dto.dart';
 import '../all_products_screen/bloc/products_bloc.dart';
 import '../all_products_screen/bloc/products_event.dart';
-import '../all_products_screen/bloc/products_state.dart';
 
 @RoutePage()
 class ProductDetailsScreen extends StatelessWidget {
@@ -25,7 +24,7 @@ class ProductDetailsScreen extends StatelessWidget {
     Product selectedProduct,
   ) async {
     final storageUnits = context.read<StorageUnitsBloc>().getAllStorageUnits();
-    final rooms = context.read<RoomsBloc>().getAllRooms();
+    final rooms = context.read<RoomsBloc>().state.allRooms;
 
     final result = await context.router.push<NewProductDto>(
       AddProductRoute(
@@ -44,6 +43,7 @@ class ProductDetailsScreen extends StatelessWidget {
     if (result == null) return;
 
     context.read<ProductsBloc>().add(
+      //TODO: co zrobić z tym warningiem?
       UpdateProductEvent(
         id: selectedProduct.id,
         name: result.name,
@@ -58,25 +58,26 @@ class ProductDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ProductsBloc, ProductsState>(
-      builder: (context, state) {
-        final selectedProduct = context.read<ProductsBloc>().getProductById(
-          selectedProductId,
-        );
+    return Builder(
+      builder: (context) {
+        final stateRoom = context.read<RoomsBloc>().state;
+        final stateStorageUnit = context
+            .read<
+              StorageUnitsBloc
+            >(); //TODO: co z inicjacją tego blocu i pobieraniem listy storage'ow
+        final stateProduct = context.read<ProductsBloc>().state;
+
+        final selectedProduct = stateProduct.getProductById(selectedProductId);
 
         final roomName = selectedProduct.roomId != null
-            ? context
-                  .read<RoomsBloc>()
-                  .state
-                  .allRooms
+            ? stateRoom.allRooms
                   .where((r) => r.id == selectedProduct.roomId)
                   .first
                   .name
             : AppLocalizations.of(context)!.notIncludedLabel;
 
         final storageUnitName = selectedProduct.storageUnitId != null
-            ? context
-                  .read<StorageUnitsBloc>()
+            ? stateStorageUnit
                   .getAllStorageUnits()
                   .where((s) => s.id == selectedProduct.storageUnitId)
                   .first
@@ -85,12 +86,7 @@ class ProductDetailsScreen extends StatelessWidget {
 
         return Scaffold(
           appBar: AppBar(
-            title: Text(
-              context
-                  .read<ProductsBloc>()
-                  .getProductById(selectedProductId)
-                  .name,
-            ),
+            title: Text(stateProduct.getProductById(selectedProductId).name),
             actions: [
               IconButton(
                 onPressed: () => _modifyProduct(context, selectedProduct),

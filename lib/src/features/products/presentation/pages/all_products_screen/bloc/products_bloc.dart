@@ -6,6 +6,7 @@ import '../../../../domain/usecases/create_product.dart';
 import '../../../../domain/usecases/delete_product.dart';
 import '../../../../domain/usecases/get_products.dart';
 import '../../../../domain/usecases/update_product.dart';
+import '../../../dtos/reload_products_dto.dart';
 import 'products_event.dart';
 import 'products_state.dart';
 
@@ -33,18 +34,13 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     on<ResetLastActionMessageEvent>(_onResetLastActionMessageEvent);
   }
 
-  Product getProductById(int id) {
-    return state.allProducts.firstWhere((p) => p.id == id);
-  }
+  List<Product> getAllProducts() =>
+      state.allProducts.isEmpty ? _getProducts() : state.allProducts;
 
-  List<Product> getAllProducts() {
-    return state.allProducts.isEmpty ? _getProducts() : state.allProducts;
-  }
-
-  Future<void> _createInitialState(
+  void _createInitialState(
     CreateInitialStateEvent event,
     Emitter<ProductsState> emit,
-  ) async {
+  ) {
     try {
       final products = _getProducts();
       List<Product> selectedProducts = [];
@@ -89,7 +85,7 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     }
   }
 
-  void _onUpdateProductNameEvent(
+  Future<void> _onUpdateProductNameEvent(
     UpdateProductEvent event,
     Emitter<ProductsState> emit,
   ) async {
@@ -107,9 +103,9 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
 
       emit(
         state.copyWith(
-          allProducts: result['allProducts']!,
-          selectedProducts: result['selectedProducts']!,
-          presentedProducts: result['presentedProducts']!,
+          allProducts: result.allProducts,
+          selectedProducts: result.selectedProducts,
+          presentedProducts: result.presentedProducts,
           hasError: false,
           lastActionMessage: 'Product successfully updated!',
         ),
@@ -124,7 +120,7 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     }
   }
 
-  void _onDeleteProductEvent(
+  Future<void> _onDeleteProductEvent(
     DeleteProductEvent event,
     Emitter<ProductsState> emit,
   ) async {
@@ -134,9 +130,9 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
 
       emit(
         state.copyWith(
-          allProducts: result['allProducts']!,
-          selectedProducts: result['selectedProducts']!,
-          presentedProducts: result['presentedProducts']!,
+          allProducts: result.allProducts,
+          selectedProducts: result.selectedProducts,
+          presentedProducts: result.presentedProducts,
           hasError: false,
           lastActionMessage: 'Product successfully deleted!',
         ),
@@ -151,7 +147,7 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     }
   }
 
-  void _onCreateProductEvent(
+  Future<void> _onCreateProductEvent(
     CreateProductEvent event,
     Emitter<ProductsState> emit,
   ) async {
@@ -169,9 +165,9 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
 
       emit(
         state.copyWith(
-          allProducts: result['allProducts']!,
-          selectedProducts: result['selectedProducts']!,
-          presentedProducts: result['presentedProducts']!,
+          allProducts: result.allProducts,
+          selectedProducts: result.selectedProducts,
+          presentedProducts: result.presentedProducts,
           hasError: false,
           lastActionMessage: 'Product successfully created!',
         ),
@@ -213,16 +209,16 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     );
   }
 
-  Map<String, List<Product>> _reloadProducts() {
+  ReloadProductsDto _reloadProducts() {
     final products = _getProducts();
     List<Product> selectedProducts = [];
 
     if (state.selectedRoomId == null) {
-      return {
-        'allProducts': products,
-        'selectedProducts': products,
-        'presentedProducts': products,
-      };
+      return ReloadProductsDto(
+        allProducts: products,
+        selectedProducts: products,
+        presentedProducts: products,
+      );
     }
 
     if (state.selectedStorageUnitId != null) {
@@ -233,10 +229,10 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
       selectedProducts = _getProductsByRoom(state.selectedRoomId!);
     }
 
-    return {
-      'allProducts': products,
-      'selectedProducts': selectedProducts,
-      'presentedProducts': selectedProducts,
-    };
+    return ReloadProductsDto(
+      allProducts: products,
+      selectedProducts: selectedProducts,
+      presentedProducts: selectedProducts,
+    );
   }
 }

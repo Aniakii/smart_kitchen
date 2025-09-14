@@ -27,6 +27,8 @@ class ProductsState with _$ProductsState {
     lastActionMessage: null,
   );
 
+  Product getProductById(int id) => allProducts.firstWhere((p) => p.id == id);
+
   @override
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }

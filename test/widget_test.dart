@@ -10,9 +10,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:smart_kitchen/main.dart';
 import 'package:smart_kitchen/src/features/kitchen/data/datasources/kitchen_local_data_source.dart';
-import 'package:smart_kitchen/src/features/kitchen/data/repositories/kitchen_repository_impl.dart';
 import 'package:smart_kitchen/src/features/products/data/datasources/products_local_data_source.dart';
-import 'package:smart_kitchen/src/features/products/data/repositories/products_repository_impl.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
@@ -22,13 +20,11 @@ void main() {
     await kitchenLocalDataSource.initializeDatabase();
     await productsLocalDataSource.initializeDatabase();
 
-    final kitchenRepository = KitchenRepositoryImpl(kitchenLocalDataSource);
-    final productsRepository = ProductsRepositoryImpl(productsLocalDataSource);
     // Build our app and trigger a frame.
     await tester.pumpWidget(
       MyApp(
-        kitchenRepository: kitchenRepository,
-        productsRepository: productsRepository,
+        kitchenDataSource: kitchenLocalDataSource,
+        productsDataSource: productsLocalDataSource,
       ),
     );
 

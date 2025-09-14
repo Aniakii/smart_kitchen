@@ -8,7 +8,7 @@ part of 'storage_unit_hive.dart';
 
 class StorageUnitHiveAdapter extends TypeAdapter<StorageUnitHive> {
   @override
-  final int typeId = 1;
+  final typeId = 1;
 
   @override
   StorageUnitHive read(BinaryReader reader) {
@@ -17,9 +17,9 @@ class StorageUnitHiveAdapter extends TypeAdapter<StorageUnitHive> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return StorageUnitHive(
-      fields[0] as int,
+      (fields[0] as num).toInt(),
       fields[1] as String,
-      fields[2] as int,
+      (fields[2] as num).toInt(),
     );
   }
 

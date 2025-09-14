@@ -5,7 +5,7 @@ import '../../../../../core/l10n/app_localizations.dart';
 
 @RoutePage()
 class BarcodeScannerScreen extends StatelessWidget {
-  final MobileScannerController controller = MobileScannerController();
+  final _controller = MobileScannerController();
   final ValueNotifier<bool> _isPopping = ValueNotifier(false);
 
   BarcodeScannerScreen({super.key});
@@ -15,13 +15,13 @@ class BarcodeScannerScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(AppLocalizations.of(context)!.barcodeTitle)),
       body: MobileScanner(
-        controller: controller,
+        controller: _controller,
         onDetect: (capture) {
           if (_isPopping.value) return;
           final code = capture.barcodes.first.rawValue;
           if (code != null) {
             _isPopping.value = true;
-            controller.stop();
+            _controller.stop();
             context.router.pop<String>(code);
           }
         },

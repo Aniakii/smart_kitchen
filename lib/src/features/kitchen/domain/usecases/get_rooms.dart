@@ -6,7 +6,5 @@ class GetRooms {
 
   GetRooms(this.repository);
 
-  List<Room> call() {
-    return repository.getRooms();
-  }
+  List<Room> call() => repository.getRooms();
 }
