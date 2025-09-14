@@ -3,7 +3,7 @@ import '../../../../domain/entities/room.dart';
 abstract class StorageUnitsEvent {}
 
 class CreateInitialStateEvent extends StorageUnitsEvent {
-  final Room selectedRoom;
+  final Room? selectedRoom;
 
   CreateInitialStateEvent(this.selectedRoom);
 }

@@ -15,8 +15,6 @@ class StorageUnitsBloc extends Bloc<StorageUnitsEvent, StorageUnitsState> {
   final CreateStorageUnit _createStorageUnit;
   final DeleteStorageUnit _deleteStorageUnit;
 
-  late int selectedRoomId;
-
   StorageUnitsBloc(
     this._getStorageUnits,
     this._getStorageUnitsByRoom,
@@ -41,9 +39,12 @@ class StorageUnitsBloc extends Bloc<StorageUnitsEvent, StorageUnitsState> {
     Emitter<StorageUnitsState> emit,
   ) {
     try {
-      selectedRoomId = event.selectedRoom.id;
-
-      final storageUnits = _getStorageUnitsByRoom(selectedRoomId);
+      List<StorageUnit> storageUnits = [];
+      if (event.selectedRoom == null) {
+        storageUnits = _getStorageUnits();
+      } else {
+        storageUnits = _getStorageUnitsByRoom(event.selectedRoom!.id);
+      }
       emit(
         state.copyWith(
           selectedRoom: event.selectedRoom,
@@ -89,7 +90,9 @@ class StorageUnitsBloc extends Bloc<StorageUnitsEvent, StorageUnitsState> {
   ) async {
     try {
       await _updateStorageUnit(event.storageUnitId, event.storageUnitName);
-      final updatedStorageUnits = _getStorageUnitsByRoom(selectedRoomId);
+      final updatedStorageUnits = _getStorageUnitsByRoom(
+        state.selectedRoom!.id,
+      );
       emit(
         state.copyWith(
           allStorageUnits: updatedStorageUnits,
@@ -114,7 +117,9 @@ class StorageUnitsBloc extends Bloc<StorageUnitsEvent, StorageUnitsState> {
   ) async {
     try {
       await _deleteStorageUnit(event.storageUnitId);
-      final updatedStorageUnits = _getStorageUnitsByRoom(selectedRoomId);
+      final updatedStorageUnits = _getStorageUnitsByRoom(
+        state.selectedRoom!.id,
+      );
       emit(
         state.copyWith(
           allStorageUnits: updatedStorageUnits,
@@ -137,8 +142,10 @@ class StorageUnitsBloc extends Bloc<StorageUnitsEvent, StorageUnitsState> {
     Emitter<StorageUnitsState> emit,
   ) async {
     try {
-      await _createStorageUnit(event.storageUnitName, selectedRoomId);
-      final updatedStorageUnits = _getStorageUnitsByRoom(selectedRoomId);
+      await _createStorageUnit(event.storageUnitName, state.selectedRoom!.id);
+      final updatedStorageUnits = _getStorageUnitsByRoom(
+        state.selectedRoom!.id,
+      );
       emit(
         state.copyWith(
           allStorageUnits: updatedStorageUnits,

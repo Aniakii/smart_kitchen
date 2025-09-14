@@ -19,6 +19,8 @@ import 'package:smart_kitchen/src/features/kitchen/domain/usecases/update_room.d
 import 'package:smart_kitchen/src/features/kitchen/domain/usecases/update_storage_unit.dart';
 import 'package:smart_kitchen/src/features/kitchen/presentation/pages/all_rooms/bloc/rooms_bloc.dart';
 import 'package:smart_kitchen/src/features/kitchen/presentation/pages/all_storage_units/bloc/storage_units_bloc.dart';
+import 'package:smart_kitchen/src/features/kitchen/presentation/pages/all_storage_units/bloc/storage_units_event.dart'
+    as storage_unit_event;
 import 'package:smart_kitchen/src/features/products/data/datasources/products_local_data_source.dart';
 import 'package:smart_kitchen/src/features/products/data/repositories/products_repository_impl.dart';
 import 'package:smart_kitchen/src/features/products/domain/repositories/products_repository.dart';
@@ -29,6 +31,8 @@ import 'package:smart_kitchen/src/features/products/domain/usecases/get_products
 import 'package:smart_kitchen/src/features/products/domain/usecases/get_products_by_storage_unit.dart';
 import 'package:smart_kitchen/src/features/products/domain/usecases/update_product.dart';
 import 'package:smart_kitchen/src/features/products/presentation/pages/all_products_screen/bloc/products_bloc.dart';
+import 'package:smart_kitchen/src/features/products/presentation/pages/all_products_screen/bloc/products_event.dart'
+    as product_event;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -95,7 +99,7 @@ class MyApp extends StatelessWidget {
                 context.read<KitchenRepository>(),
                 context.read<ProductsRepository>(),
               ),
-            ),
+            )..add(storage_unit_event.CreateInitialStateEvent(null)),
           ),
           BlocProvider(
             create: (context) => ProductsBloc(
@@ -105,7 +109,7 @@ class MyApp extends StatelessWidget {
               UpdateProduct(context.read<ProductsRepository>()),
               CreateProduct(context.read<ProductsRepository>()),
               DeleteProduct(context.read<ProductsRepository>()),
-            ),
+            )..add(product_event.CreateInitialStateEvent(null, null)),
           ),
         ],
         child: MaterialApp.router(

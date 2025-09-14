@@ -8,6 +8,8 @@ import 'package:smart_kitchen/src/features/products/presentation/pages/product_d
 import 'package:smart_kitchen/src/features/products/presentation/pages/product_details_screen/widgets/storage_section_widget.dart';
 import '../../../../../core/l10n/app_localizations.dart';
 import '../../../../../core/routing/app_router.dart';
+import '../../../../kitchen/domain/entities/room.dart';
+import '../../../../kitchen/domain/entities/storage_unit.dart';
 import '../../../domain/entities/product.dart';
 import '../../dtos/new_product_dto.dart';
 import '../all_products_screen/bloc/products_bloc.dart';
@@ -21,11 +23,11 @@ class ProductDetailsScreen extends StatelessWidget {
 
   Future<void> _modifyProduct(
     BuildContext context,
+    List<Room> rooms,
+    List<StorageUnit> storageUnits,
     Product selectedProduct,
+    ProductsBloc bloc,
   ) async {
-    final storageUnits = context.read<StorageUnitsBloc>().getAllStorageUnits();
-    final rooms = context.read<RoomsBloc>().state.allRooms;
-
     final result = await context.router.push<NewProductDto>(
       AddProductRoute(
         modifiedProduct: selectedProduct,
@@ -42,8 +44,7 @@ class ProductDetailsScreen extends StatelessWidget {
 
     if (result == null) return;
 
-    context.read<ProductsBloc>().add(
-      //TODO: co zrobić z tym warningiem?
+    bloc.add(
       UpdateProductEvent(
         id: selectedProduct.id,
         name: result.name,
@@ -89,7 +90,13 @@ class ProductDetailsScreen extends StatelessWidget {
             title: Text(stateProduct.getProductById(selectedProductId).name),
             actions: [
               IconButton(
-                onPressed: () => _modifyProduct(context, selectedProduct),
+                onPressed: () => _modifyProduct(
+                  context,
+                  stateRoom.allRooms,
+                  stateStorageUnit.getAllStorageUnits(),
+                  selectedProduct,
+                  context.read<ProductsBloc>(),
+                ),
                 icon: Icon(Icons.edit),
               ),
             ],
