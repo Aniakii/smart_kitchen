@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$StorageUnitsState {
 
- Room? get selectedRoom; List<StorageUnit> get allStorageUnits; bool get isLoading; bool get hasError; int? get editingStorageUnitId; String? get lastActionMessage;
+ Room? get selectedRoom; List<StorageUnit> get allStorageUnits; List<StorageUnit> get selectedStorageUnits; bool get isLoading; bool get hasError; int? get editingStorageUnitId; String? get lastActionMessage;
 /// Create a copy of StorageUnitsState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $StorageUnitsStateCopyWith<StorageUnitsState> get copyWith => _$StorageUnitsStat
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is StorageUnitsState&&(identical(other.selectedRoom, selectedRoom) || other.selectedRoom == selectedRoom)&&const DeepCollectionEquality().equals(other.allStorageUnits, allStorageUnits)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.hasError, hasError) || other.hasError == hasError)&&(identical(other.editingStorageUnitId, editingStorageUnitId) || other.editingStorageUnitId == editingStorageUnitId)&&(identical(other.lastActionMessage, lastActionMessage) || other.lastActionMessage == lastActionMessage));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is StorageUnitsState&&(identical(other.selectedRoom, selectedRoom) || other.selectedRoom == selectedRoom)&&const DeepCollectionEquality().equals(other.allStorageUnits, allStorageUnits)&&const DeepCollectionEquality().equals(other.selectedStorageUnits, selectedStorageUnits)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.hasError, hasError) || other.hasError == hasError)&&(identical(other.editingStorageUnitId, editingStorageUnitId) || other.editingStorageUnitId == editingStorageUnitId)&&(identical(other.lastActionMessage, lastActionMessage) || other.lastActionMessage == lastActionMessage));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,selectedRoom,const DeepCollectionEquality().hash(allStorageUnits),isLoading,hasError,editingStorageUnitId,lastActionMessage);
+int get hashCode => Object.hash(runtimeType,selectedRoom,const DeepCollectionEquality().hash(allStorageUnits),const DeepCollectionEquality().hash(selectedStorageUnits),isLoading,hasError,editingStorageUnitId,lastActionMessage);
 
 @override
 String toString() {
-  return 'StorageUnitsState(selectedRoom: $selectedRoom, allStorageUnits: $allStorageUnits, isLoading: $isLoading, hasError: $hasError, editingStorageUnitId: $editingStorageUnitId, lastActionMessage: $lastActionMessage)';
+  return 'StorageUnitsState(selectedRoom: $selectedRoom, allStorageUnits: $allStorageUnits, selectedStorageUnits: $selectedStorageUnits, isLoading: $isLoading, hasError: $hasError, editingStorageUnitId: $editingStorageUnitId, lastActionMessage: $lastActionMessage)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $StorageUnitsStateCopyWith<$Res>  {
   factory $StorageUnitsStateCopyWith(StorageUnitsState value, $Res Function(StorageUnitsState) _then) = _$StorageUnitsStateCopyWithImpl;
 @useResult
 $Res call({
- Room? selectedRoom, List<StorageUnit> allStorageUnits, bool isLoading, bool hasError, int? editingStorageUnitId, String? lastActionMessage
+ Room? selectedRoom, List<StorageUnit> allStorageUnits, List<StorageUnit> selectedStorageUnits, bool isLoading, bool hasError, int? editingStorageUnitId, String? lastActionMessage
 });
 
 
@@ -62,10 +62,11 @@ class _$StorageUnitsStateCopyWithImpl<$Res>
 
 /// Create a copy of StorageUnitsState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? selectedRoom = freezed,Object? allStorageUnits = null,Object? isLoading = null,Object? hasError = null,Object? editingStorageUnitId = freezed,Object? lastActionMessage = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? selectedRoom = freezed,Object? allStorageUnits = null,Object? selectedStorageUnits = null,Object? isLoading = null,Object? hasError = null,Object? editingStorageUnitId = freezed,Object? lastActionMessage = freezed,}) {
   return _then(_self.copyWith(
 selectedRoom: freezed == selectedRoom ? _self.selectedRoom : selectedRoom // ignore: cast_nullable_to_non_nullable
 as Room?,allStorageUnits: null == allStorageUnits ? _self.allStorageUnits : allStorageUnits // ignore: cast_nullable_to_non_nullable
+as List<StorageUnit>,selectedStorageUnits: null == selectedStorageUnits ? _self.selectedStorageUnits : selectedStorageUnits // ignore: cast_nullable_to_non_nullable
 as List<StorageUnit>,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,hasError: null == hasError ? _self.hasError : hasError // ignore: cast_nullable_to_non_nullable
 as bool,editingStorageUnitId: freezed == editingStorageUnitId ? _self.editingStorageUnitId : editingStorageUnitId // ignore: cast_nullable_to_non_nullable
@@ -155,10 +156,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Room? selectedRoom,  List<StorageUnit> allStorageUnits,  bool isLoading,  bool hasError,  int? editingStorageUnitId,  String? lastActionMessage)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Room? selectedRoom,  List<StorageUnit> allStorageUnits,  List<StorageUnit> selectedStorageUnits,  bool isLoading,  bool hasError,  int? editingStorageUnitId,  String? lastActionMessage)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _StorageUnitsState() when $default != null:
-return $default(_that.selectedRoom,_that.allStorageUnits,_that.isLoading,_that.hasError,_that.editingStorageUnitId,_that.lastActionMessage);case _:
+return $default(_that.selectedRoom,_that.allStorageUnits,_that.selectedStorageUnits,_that.isLoading,_that.hasError,_that.editingStorageUnitId,_that.lastActionMessage);case _:
   return orElse();
 
 }
@@ -176,10 +177,10 @@ return $default(_that.selectedRoom,_that.allStorageUnits,_that.isLoading,_that.h
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Room? selectedRoom,  List<StorageUnit> allStorageUnits,  bool isLoading,  bool hasError,  int? editingStorageUnitId,  String? lastActionMessage)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Room? selectedRoom,  List<StorageUnit> allStorageUnits,  List<StorageUnit> selectedStorageUnits,  bool isLoading,  bool hasError,  int? editingStorageUnitId,  String? lastActionMessage)  $default,) {final _that = this;
 switch (_that) {
 case _StorageUnitsState():
-return $default(_that.selectedRoom,_that.allStorageUnits,_that.isLoading,_that.hasError,_that.editingStorageUnitId,_that.lastActionMessage);case _:
+return $default(_that.selectedRoom,_that.allStorageUnits,_that.selectedStorageUnits,_that.isLoading,_that.hasError,_that.editingStorageUnitId,_that.lastActionMessage);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -196,10 +197,10 @@ return $default(_that.selectedRoom,_that.allStorageUnits,_that.isLoading,_that.h
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Room? selectedRoom,  List<StorageUnit> allStorageUnits,  bool isLoading,  bool hasError,  int? editingStorageUnitId,  String? lastActionMessage)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Room? selectedRoom,  List<StorageUnit> allStorageUnits,  List<StorageUnit> selectedStorageUnits,  bool isLoading,  bool hasError,  int? editingStorageUnitId,  String? lastActionMessage)?  $default,) {final _that = this;
 switch (_that) {
 case _StorageUnitsState() when $default != null:
-return $default(_that.selectedRoom,_that.allStorageUnits,_that.isLoading,_that.hasError,_that.editingStorageUnitId,_that.lastActionMessage);case _:
+return $default(_that.selectedRoom,_that.allStorageUnits,_that.selectedStorageUnits,_that.isLoading,_that.hasError,_that.editingStorageUnitId,_that.lastActionMessage);case _:
   return null;
 
 }
@@ -211,7 +212,7 @@ return $default(_that.selectedRoom,_that.allStorageUnits,_that.isLoading,_that.h
 
 
 class _StorageUnitsState implements StorageUnitsState {
-  const _StorageUnitsState({required this.selectedRoom, required final  List<StorageUnit> allStorageUnits, required this.isLoading, required this.hasError, this.editingStorageUnitId, this.lastActionMessage}): _allStorageUnits = allStorageUnits;
+  const _StorageUnitsState({required this.selectedRoom, required final  List<StorageUnit> allStorageUnits, required final  List<StorageUnit> selectedStorageUnits, required this.isLoading, required this.hasError, this.editingStorageUnitId, this.lastActionMessage}): _allStorageUnits = allStorageUnits,_selectedStorageUnits = selectedStorageUnits;
   
 
 @override final  Room? selectedRoom;
@@ -220,6 +221,13 @@ class _StorageUnitsState implements StorageUnitsState {
   if (_allStorageUnits is EqualUnmodifiableListView) return _allStorageUnits;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_allStorageUnits);
+}
+
+ final  List<StorageUnit> _selectedStorageUnits;
+@override List<StorageUnit> get selectedStorageUnits {
+  if (_selectedStorageUnits is EqualUnmodifiableListView) return _selectedStorageUnits;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_selectedStorageUnits);
 }
 
 @override final  bool isLoading;
@@ -237,22 +245,19 @@ _$StorageUnitsStateCopyWith<_StorageUnitsState> get copyWith => __$StorageUnitsS
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _StorageUnitsState&&(identical(other.selectedRoom, selectedRoom) || other.selectedRoom == selectedRoom)&&const DeepCollectionEquality().equals(other._allStorageUnits, _allStorageUnits)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.hasError, hasError) || other.hasError == hasError)&&(identical(other.editingStorageUnitId, editingStorageUnitId) || other.editingStorageUnitId == editingStorageUnitId)&&(identical(other.lastActionMessage, lastActionMessage) || other.lastActionMessage == lastActionMessage));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _StorageUnitsState&&(identical(other.selectedRoom, selectedRoom) || other.selectedRoom == selectedRoom)&&const DeepCollectionEquality().equals(other._allStorageUnits, _allStorageUnits)&&const DeepCollectionEquality().equals(other._selectedStorageUnits, _selectedStorageUnits)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.hasError, hasError) || other.hasError == hasError)&&(identical(other.editingStorageUnitId, editingStorageUnitId) || other.editingStorageUnitId == editingStorageUnitId)&&(identical(other.lastActionMessage, lastActionMessage) || other.lastActionMessage == lastActionMessage));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,selectedRoom,const DeepCollectionEquality().hash(_allStorageUnits),isLoading,hasError,editingStorageUnitId,lastActionMessage);
+int get hashCode => Object.hash(runtimeType,selectedRoom,const DeepCollectionEquality().hash(_allStorageUnits),const DeepCollectionEquality().hash(_selectedStorageUnits),isLoading,hasError,editingStorageUnitId,lastActionMessage);
 
 @override
 String toString() {
-  return 'StorageUnitsState(selectedRoom: $selectedRoom, allStorageUnits: $allStorageUnits, isLoading: $isLoading, hasError: $hasError, editingStorageUnitId: $editingStorageUnitId, lastActionMessage: $lastActionMessage)';
+  return 'StorageUnitsState(selectedRoom: $selectedRoom, allStorageUnits: $allStorageUnits, selectedStorageUnits: $selectedStorageUnits, isLoading: $isLoading, hasError: $hasError, editingStorageUnitId: $editingStorageUnitId, lastActionMessage: $lastActionMessage)';
 }
 
 
-
-  @override
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
 
 /// @nodoc
@@ -260,7 +265,7 @@ abstract mixin class _$StorageUnitsStateCopyWith<$Res> implements $StorageUnitsS
   factory _$StorageUnitsStateCopyWith(_StorageUnitsState value, $Res Function(_StorageUnitsState) _then) = __$StorageUnitsStateCopyWithImpl;
 @override @useResult
 $Res call({
- Room? selectedRoom, List<StorageUnit> allStorageUnits, bool isLoading, bool hasError, int? editingStorageUnitId, String? lastActionMessage
+ Room? selectedRoom, List<StorageUnit> allStorageUnits, List<StorageUnit> selectedStorageUnits, bool isLoading, bool hasError, int? editingStorageUnitId, String? lastActionMessage
 });
 
 
@@ -277,10 +282,11 @@ class __$StorageUnitsStateCopyWithImpl<$Res>
 
 /// Create a copy of StorageUnitsState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? selectedRoom = freezed,Object? allStorageUnits = null,Object? isLoading = null,Object? hasError = null,Object? editingStorageUnitId = freezed,Object? lastActionMessage = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? selectedRoom = freezed,Object? allStorageUnits = null,Object? selectedStorageUnits = null,Object? isLoading = null,Object? hasError = null,Object? editingStorageUnitId = freezed,Object? lastActionMessage = freezed,}) {
   return _then(_StorageUnitsState(
 selectedRoom: freezed == selectedRoom ? _self.selectedRoom : selectedRoom // ignore: cast_nullable_to_non_nullable
 as Room?,allStorageUnits: null == allStorageUnits ? _self._allStorageUnits : allStorageUnits // ignore: cast_nullable_to_non_nullable
+as List<StorageUnit>,selectedStorageUnits: null == selectedStorageUnits ? _self._selectedStorageUnits : selectedStorageUnits // ignore: cast_nullable_to_non_nullable
 as List<StorageUnit>,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,hasError: null == hasError ? _self.hasError : hasError // ignore: cast_nullable_to_non_nullable
 as bool,editingStorageUnitId: freezed == editingStorageUnitId ? _self.editingStorageUnitId : editingStorageUnitId // ignore: cast_nullable_to_non_nullable

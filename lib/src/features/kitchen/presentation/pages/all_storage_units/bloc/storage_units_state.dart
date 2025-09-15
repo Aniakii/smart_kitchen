@@ -9,6 +9,7 @@ class StorageUnitsState with _$StorageUnitsState {
   const factory StorageUnitsState({
     required final Room? selectedRoom,
     required final List<StorageUnit> allStorageUnits,
+    required final List<StorageUnit> selectedStorageUnits,
     required final bool isLoading,
     required final bool hasError,
     final int? editingStorageUnitId,
@@ -18,6 +19,7 @@ class StorageUnitsState with _$StorageUnitsState {
   factory StorageUnitsState.initial() => StorageUnitsState(
     selectedRoom: null,
     allStorageUnits: [],
+    selectedStorageUnits: [],
     isLoading: true,
     hasError: false,
     editingStorageUnitId: null,

@@ -65,7 +65,7 @@ class ProductDetailsScreen extends StatelessWidget {
         final stateStorageUnit = context
             .read<
               StorageUnitsBloc
-            >(); //TODO: co z inicjacją tego blocu i pobieraniem listy storage'ow
+            >().state;
         final stateProduct = context.read<ProductsBloc>().state;
 
         final selectedProduct = stateProduct.getProductById(selectedProductId);
@@ -79,7 +79,7 @@ class ProductDetailsScreen extends StatelessWidget {
 
         final storageUnitName = selectedProduct.storageUnitId != null
             ? stateStorageUnit
-                  .getAllStorageUnits()
+                  .allStorageUnits
                   .where((s) => s.id == selectedProduct.storageUnitId)
                   .first
                   .name
@@ -93,7 +93,7 @@ class ProductDetailsScreen extends StatelessWidget {
                 onPressed: () => _modifyProduct(
                   context,
                   stateRoom.allRooms,
-                  stateStorageUnit.getAllStorageUnits(),
+                  stateStorageUnit.allStorageUnits,
                   selectedProduct,
                   context.read<ProductsBloc>(),
                 ),

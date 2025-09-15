@@ -30,10 +30,6 @@ class StorageUnitsBloc extends Bloc<StorageUnitsEvent, StorageUnitsState> {
     on<ResetLastActionMessageEvent>(_onResetLastActionMessageEvent);
   }
 
-  List<StorageUnit> getAllStorageUnits() {
-    return _getStorageUnits();
-  }
-
   void _createInitialState(
     CreateInitialStateEvent event,
     Emitter<StorageUnitsState> emit,
@@ -48,7 +44,8 @@ class StorageUnitsBloc extends Bloc<StorageUnitsEvent, StorageUnitsState> {
       emit(
         state.copyWith(
           selectedRoom: event.selectedRoom,
-          allStorageUnits: storageUnits,
+          allStorageUnits: _getStorageUnits(),
+          selectedStorageUnits: storageUnits,
           isLoading: false,
         ),
       );
@@ -96,6 +93,7 @@ class StorageUnitsBloc extends Bloc<StorageUnitsEvent, StorageUnitsState> {
       emit(
         state.copyWith(
           allStorageUnits: updatedStorageUnits,
+          selectedStorageUnits: _getStorageUnits(),
           editingStorageUnitId: null,
           hasError: false,
           lastActionMessage: 'Storage unit successfully updated!',
@@ -122,7 +120,8 @@ class StorageUnitsBloc extends Bloc<StorageUnitsEvent, StorageUnitsState> {
       );
       emit(
         state.copyWith(
-          allStorageUnits: updatedStorageUnits,
+          selectedStorageUnits: updatedStorageUnits,
+          allStorageUnits: _getStorageUnits(),
           hasError: false,
           lastActionMessage: 'Storage unit successfully deleted!',
         ),
@@ -148,7 +147,8 @@ class StorageUnitsBloc extends Bloc<StorageUnitsEvent, StorageUnitsState> {
       );
       emit(
         state.copyWith(
-          allStorageUnits: updatedStorageUnits,
+          allStorageUnits: _getStorageUnits(),
+          selectedStorageUnits: updatedStorageUnits,
           hasError: false,
           lastActionMessage: 'Storage unit successfully created!',
         ),

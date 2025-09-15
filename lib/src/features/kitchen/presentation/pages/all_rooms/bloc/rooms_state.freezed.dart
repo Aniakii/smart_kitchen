@@ -247,10 +247,12 @@ String toString() {
   return 'RoomsState(allRooms: $allRooms, isLoading: $isLoading, hasError: $hasError, editingRoomId: $editingRoomId, lastActionMessage: $lastActionMessage)';
 }
 
-
-
   @override
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+  Room getRoomById(int id) {
+    throw UnimplementedError();
+  }
+
+
 }
 
 /// @nodoc

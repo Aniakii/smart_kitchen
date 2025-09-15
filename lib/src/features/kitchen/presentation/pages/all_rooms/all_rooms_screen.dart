@@ -95,9 +95,7 @@ class _AllRoomsScreenState extends State<AllRoomsScreen> {
                         subtitle: AppLocalizations.of(
                           context,
                         )!.storageUnitLabel,
-                        selector: (state, context) => context
-                            .read<StorageUnitsBloc>()
-                            .getAllStorageUnits()
+                        selector: (state, context) => state.allStorageUnits
                             .where((s) => s.roomId == presentedRoom.id)
                             .length,
                         onSelect: () {

@@ -98,9 +98,7 @@ class _AllRoomsScreenState extends State<AllStorageUnitsScreen> {
                         subtitle: AppLocalizations.of(context)!.productLabel,
                         selector: (state, context) {
                           if (state.isLoading) {
-                            return context
-                                .read<ProductsBloc>()
-                                .getAllProducts()
+                            return state.allProducts
                                 .where(
                                   (p) =>
                                       p.storageUnitId ==

@@ -51,7 +51,7 @@ class _AllProductsScreenState extends State<AllProductsScreen> {
     final result = await context.router.push<NewProductDto>(
       AddProductRoute(
         allRooms: context.read<RoomsBloc>().state.allRooms,
-        allStorageUnits: context.read<StorageUnitsBloc>().getAllStorageUnits(),
+        allStorageUnits: context.read<StorageUnitsBloc>().state.allStorageUnits,
         selectedRoom: widget.selectedRoom,
         selectedStorageUnit: widget.selectedStorageUnit,
       ),
