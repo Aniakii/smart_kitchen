@@ -25,7 +25,7 @@ class ProductTextFormWidget extends StatelessWidget {
       keyboardType: textInputType,
       decoration: InputDecoration(
         fillColor: AppColors.secondary,
-        labelText: AppLocalizations.of(context)!.productNameLabel,
+        labelText: label,
         prefixIcon: Icon(icon),
       ),
       onChanged: (val) => onChanged(val),

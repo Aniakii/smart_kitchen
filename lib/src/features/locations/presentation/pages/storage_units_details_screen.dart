@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_kitchen/src/features/kitchen/domain/entities/storage_unit.dart';
+import 'package:smart_kitchen/src/features/locations/domain/entities/storage_unit.dart';
 import '../../../products/presentation/pages/all_products_screen/all_products_screen.dart';
 import '../../domain/entities/room.dart';
 

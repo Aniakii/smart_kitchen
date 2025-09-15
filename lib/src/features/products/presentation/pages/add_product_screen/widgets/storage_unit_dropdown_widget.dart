@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_kitchen/src/core/extensions/capitalize_extension.dart';
-import 'package:smart_kitchen/src/features/kitchen/domain/entities/storage_unit.dart';
+import 'package:smart_kitchen/src/features/locations/domain/entities/storage_unit.dart';
 import '../../../../../../core/l10n/app_localizations.dart';
 
 class StorageUnitDropdownWidget extends StatelessWidget {

@@ -229,17 +229,17 @@ class HomeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [KitchenScreen]
-class KitchenRoute extends PageRouteInfo<void> {
-  const KitchenRoute({List<PageRouteInfo>? children})
-    : super(KitchenRoute.name, initialChildren: children);
+/// [LocationsScreen]
+class LocationsRoute extends PageRouteInfo<void> {
+  const LocationsRoute({List<PageRouteInfo>? children})
+    : super(LocationsRoute.name, initialChildren: children);
 
-  static const String name = 'KitchenRoute';
+  static const String name = 'LocationsRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const KitchenScreen();
+      return const LocationsScreen();
     },
   );
 }

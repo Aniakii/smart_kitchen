@@ -1,15 +1,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smart_kitchen/src/features/kitchen/presentation/pages/all_rooms/bloc/rooms_bloc.dart';
-import 'package:smart_kitchen/src/features/kitchen/presentation/pages/all_storage_units/bloc/storage_units_bloc.dart';
+import 'package:smart_kitchen/src/features/locations/presentation/pages/all_rooms/bloc/rooms_bloc.dart';
+import 'package:smart_kitchen/src/features/locations/presentation/pages/all_storage_units/bloc/storage_units_bloc.dart';
 import 'package:smart_kitchen/src/features/products/presentation/pages/product_details_screen/widgets/category_section_widget.dart';
 import 'package:smart_kitchen/src/features/products/presentation/pages/product_details_screen/widgets/details_section_widget.dart';
 import 'package:smart_kitchen/src/features/products/presentation/pages/product_details_screen/widgets/storage_section_widget.dart';
 import '../../../../../core/l10n/app_localizations.dart';
 import '../../../../../core/routing/app_router.dart';
-import '../../../../kitchen/domain/entities/room.dart';
-import '../../../../kitchen/domain/entities/storage_unit.dart';
+import '../../../../locations/domain/entities/room.dart';
+import '../../../../locations/domain/entities/storage_unit.dart';
 import '../../../domain/entities/product.dart';
 import '../../dtos/new_product_dto.dart';
 import '../all_products_screen/bloc/products_bloc.dart';
@@ -66,7 +66,7 @@ class ProductDetailsScreen extends StatelessWidget {
             .read<
               StorageUnitsBloc
             >().state;
-        final stateProduct = context.read<ProductsBloc>().state;
+        final stateProduct = context.watch<ProductsBloc>().state;
 
         final selectedProduct = stateProduct.getProductById(selectedProductId);
 

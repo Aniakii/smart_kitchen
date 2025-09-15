@@ -13,14 +13,14 @@ class HomeScreen extends StatelessWidget {
       appBarBuilder: (context, router) => AppBar(
         title: Center(child: Text(AppLocalizations.of(context)!.appName)),
       ),
-      routes: [KitchenRoute(), RecipesRoute()],
+      routes: [LocationsRoute(), RecipesRoute()],
       bottomNavigationBuilder: (context, tabsRouter) => BottomNavigationBar(
         currentIndex: tabsRouter.activeIndex,
         onTap: tabsRouter.setActiveIndex,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: AppLocalizations.of(context)!.kitchenTitle,
+            label: AppLocalizations.of(context)!.locationsTitle,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.menu_book),

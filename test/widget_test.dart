@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:smart_kitchen/main.dart';
-import 'package:smart_kitchen/src/features/kitchen/data/datasources/kitchen_local_data_source.dart';
+import 'package:smart_kitchen/src/features/locations/data/datasources/kitchen_local_data_source.dart';
 import 'package:smart_kitchen/src/features/products/data/datasources/products_local_data_source.dart';
 
 void main() {

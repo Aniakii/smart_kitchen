@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smart_kitchen/src/features/kitchen/domain/usecases/create_room.dart';
-import 'package:smart_kitchen/src/features/kitchen/domain/usecases/delete_room.dart';
-import 'package:smart_kitchen/src/features/kitchen/domain/usecases/update_room.dart';
+import 'package:smart_kitchen/src/features/locations/domain/usecases/create_room.dart';
+import 'package:smart_kitchen/src/features/locations/domain/usecases/delete_room.dart';
+import 'package:smart_kitchen/src/features/locations/domain/usecases/update_room.dart';
 import '../../../../domain/usecases/get_rooms.dart';
 import 'rooms_event.dart';
 import 'rooms_state.dart';

@@ -1,7 +1,7 @@
 {
   "appName": "Smart Kitchen",
 
-  "kitchenTitle": "Kitchen",
+  "locationsTitle": "Locations",
   "recipesTitle": "Recipes",
   "roomsTitle": "Rooms",
   "storageUnitsTitle": "Storage units",
@@ -39,7 +39,7 @@
   "cancelButton": "Cancel",
   "updateProductButton": "Update product",
   "addProductButton": "Add product",
-  "dateButton": "Select date",
+  "dateButton": "Select\nexpiry date",
 
   "errorBarcode": "Barcode not detected",
   "errorInternet": "No internet access. Couldn\\'t fetch product info",

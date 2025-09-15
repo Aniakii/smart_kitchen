@@ -2,7 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_kitchen/src/core/extensions/capitalize_extension.dart';
 import '../../../../../../core/l10n/app_localizations.dart';
-import '../../../../../kitchen/domain/entities/room.dart';
+import '../../../../../locations/domain/entities/room.dart';
 
 class RoomDropdownWidget extends StatelessWidget {
   const RoomDropdownWidget({

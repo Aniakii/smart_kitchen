@@ -248,9 +248,7 @@ String toString() {
 }
 
   @override
-  Room getRoomById(int id) {
-    throw UnimplementedError();
-  }
+  Room getRoomById(int id) => allRooms.firstWhere((r) => r.id == id);
 
 
 }

@@ -100,11 +100,11 @@ abstract class AppLocalizations {
   /// **'Smart Kitchen'**
   String get appName;
 
-  /// No description provided for @kitchenTitle.
+  /// No description provided for @locationsTitle.
   ///
   /// In en, this message translates to:
-  /// **'Kitchen'**
-  String get kitchenTitle;
+  /// **'Locations'**
+  String get locationsTitle;
 
   /// No description provided for @recipesTitle.
   ///
@@ -289,7 +289,7 @@ abstract class AppLocalizations {
   /// No description provided for @dateButton.
   ///
   /// In en, this message translates to:
-  /// **'Select date'**
+  /// **'Select\nexpiry date'**
   String get dateButton;
 
   /// No description provided for @errorBarcode.

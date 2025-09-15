@@ -24,5 +24,17 @@ class RoomsState with _$RoomsState {
   Room getRoomById(int id) => allRooms.firstWhere((r) => r.id == id);
 
   @override
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+  List<Room> get allRooms => throw UnimplementedError();
+
+  @override
+  int? get editingRoomId => throw UnimplementedError();
+
+  @override
+  bool get hasError => throw UnimplementedError();
+
+  @override
+  bool get isLoading => throw UnimplementedError();
+
+  @override
+  String? get lastActionMessage => throw UnimplementedError();
 }

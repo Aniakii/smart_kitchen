@@ -12,7 +12,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appName => 'Smart Kitchen';
 
   @override
-  String get kitchenTitle => 'Kitchen';
+  String get locationsTitle => 'Locations';
 
   @override
   String get recipesTitle => 'Recipes';
@@ -105,7 +105,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get addProductButton => 'Add product';
 
   @override
-  String get dateButton => 'Select date';
+  String get dateButton => 'Select\nexpiry date';
 
   @override
   String get errorBarcode => 'Barcode not detected';

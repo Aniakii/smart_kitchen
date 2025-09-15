@@ -30,5 +30,26 @@ class ProductsState with _$ProductsState {
   Product getProductById(int id) => allProducts.firstWhere((p) => p.id == id);
 
   @override
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+  List<Product> get allProducts => throw UnimplementedError();
+
+  @override
+  bool get hasError => throw UnimplementedError();
+
+  @override
+  bool get isLoading => throw UnimplementedError();
+
+  @override
+  String? get lastActionMessage => throw UnimplementedError();
+
+  @override
+  List<Product> get presentedProducts => throw UnimplementedError();
+
+  @override
+  List<Product> get selectedProducts => throw UnimplementedError();
+
+  @override
+  int? get selectedRoomId => throw UnimplementedError();
+
+  @override
+  int? get selectedStorageUnitId => throw UnimplementedError();
 }

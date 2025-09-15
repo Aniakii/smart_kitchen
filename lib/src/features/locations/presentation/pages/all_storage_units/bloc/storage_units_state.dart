@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:smart_kitchen/src/features/kitchen/domain/entities/storage_unit.dart';
+import 'package:smart_kitchen/src/features/locations/domain/entities/storage_unit.dart';
 import '../../../../domain/entities/room.dart';
 
 part 'storage_units_state.freezed.dart';
@@ -27,5 +27,23 @@ class StorageUnitsState with _$StorageUnitsState {
   );
 
   @override
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+  List<StorageUnit> get allStorageUnits => throw UnimplementedError();
+
+  @override
+  int? get editingStorageUnitId => throw UnimplementedError();
+
+  @override
+  bool get hasError => throw UnimplementedError();
+
+  @override
+  bool get isLoading => throw UnimplementedError();
+
+  @override
+  String? get lastActionMessage => throw UnimplementedError();
+
+  @override
+  Room? get selectedRoom => throw UnimplementedError();
+
+  @override
+  List<StorageUnit> get selectedStorageUnits => throw UnimplementedError();
 }

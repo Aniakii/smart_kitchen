@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smart_kitchen/src/features/kitchen/domain/usecases/delete_storage_unit.dart';
-import 'package:smart_kitchen/src/features/kitchen/domain/usecases/update_storage_unit.dart';
-import 'package:smart_kitchen/src/features/kitchen/presentation/pages/all_storage_units/bloc/storage_units_event.dart';
-import 'package:smart_kitchen/src/features/kitchen/presentation/pages/all_storage_units/bloc/storage_units_state.dart';
+import 'package:smart_kitchen/src/features/locations/domain/usecases/delete_storage_unit.dart';
+import 'package:smart_kitchen/src/features/locations/domain/usecases/update_storage_unit.dart';
+import 'package:smart_kitchen/src/features/locations/presentation/pages/all_storage_units/bloc/storage_units_event.dart';
+import 'package:smart_kitchen/src/features/locations/presentation/pages/all_storage_units/bloc/storage_units_state.dart';
 import '../../../../domain/entities/storage_unit.dart';
 import '../../../../domain/usecases/create_storage_unit.dart';
 import '../../../../domain/usecases/get_storage_units.dart';

@@ -3,8 +3,8 @@
 // Check in to version control
 
 import 'package:hive_ce/hive.dart';
-import 'package:smart_kitchen/src/features/kitchen/data/models/room_hive.dart';
-import 'package:smart_kitchen/src/features/kitchen/data/models/storage_unit_hive.dart';
+import 'package:smart_kitchen/src/features/locations/data/models/room_hive.dart';
+import 'package:smart_kitchen/src/features/locations/data/models/storage_unit_hive.dart';
 import 'package:smart_kitchen/src/features/products/data/models/product_hive.dart';
 
 extension HiveRegistrar on HiveInterface {

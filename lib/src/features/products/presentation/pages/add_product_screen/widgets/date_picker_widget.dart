@@ -20,17 +20,22 @@ class DatePickerWidget extends StatelessWidget {
             ? '${expiryDate!.day}/${expiryDate!.month}/${expiryDate!.year}'
             : AppLocalizations.of(context)!.noDateLabel,
       ),
-      trailing: TextButton(
-        onPressed: () async {
-          final DateTime? pickedDate = await showDatePicker(
-            context: context,
-            initialDate: expiryDate ?? DateTime.now(),
-            firstDate: DateTime.now(),
-            lastDate: DateTime(2030),
-          );
-          onSelect(pickedDate);
-        },
-        child: Text(AppLocalizations.of(context)!.dateButton),
+      trailing: FittedBox(
+        child: TextButton(
+          onPressed: () async {
+            final DateTime? pickedDate = await showDatePicker(
+              context: context,
+              initialDate: expiryDate ?? DateTime.now(),
+              firstDate: DateTime.now(),
+              lastDate: DateTime(2030),
+            );
+            onSelect(pickedDate);
+          },
+          child: Text(
+            AppLocalizations.of(context)!.dateButton,
+            textAlign: TextAlign.center,
+          ),
+        ),
       ),
     );
   }

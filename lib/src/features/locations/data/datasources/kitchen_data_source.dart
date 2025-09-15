@@ -1,4 +1,4 @@
-import 'package:smart_kitchen/src/features/kitchen/data/models/storage_unit_hive.dart';
+import 'package:smart_kitchen/src/features/locations/data/models/storage_unit_hive.dart';
 import '../models/room_hive.dart';
 
 abstract interface class KitchenDataSource {

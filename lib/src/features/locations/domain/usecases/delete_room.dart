@@ -1,4 +1,4 @@
-import 'package:smart_kitchen/src/features/kitchen/domain/entities/storage_unit.dart';
+import 'package:smart_kitchen/src/features/locations/domain/entities/storage_unit.dart';
 import 'package:smart_kitchen/src/features/products/domain/repositories/products_repository.dart';
 import '../repositories/kitchen_repository.dart';
 

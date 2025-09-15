@@ -1,12 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:smart_kitchen/src/features/kitchen/domain/entities/room.dart';
+import 'package:smart_kitchen/src/features/locations/domain/entities/room.dart';
 import 'package:smart_kitchen/src/features/recipes/presentation/recipes_screen.dart';
 import '../../app/home_screen.dart';
-import '../../features/kitchen/domain/entities/storage_unit.dart';
-import '../../features/kitchen/presentation/pages/kitchen_screen.dart';
-import '../../features/kitchen/presentation/pages/room_details_screen.dart';
-import '../../features/kitchen/presentation/pages/storage_units_details_screen.dart';
+import '../../features/locations/domain/entities/storage_unit.dart';
+import '../../features/locations/presentation/pages/locations_screen.dart';
+import '../../features/locations/presentation/pages/room_details_screen.dart';
+import '../../features/locations/presentation/pages/storage_units_details_screen.dart';
 import '../../features/products/domain/entities/product.dart';
 import '../../features/products/presentation/pages/add_product_screen/add_product_screen.dart';
 import 'package:collection/collection.dart';
@@ -24,7 +24,7 @@ class AppRouter extends RootStackRouter {
       page: HomeRoute.page,
       initial: true,
       children: [
-        AutoRoute(page: KitchenRoute.page, initial: true),
+        AutoRoute(page: LocationsRoute.page, initial: true),
         AutoRoute(page: RecipesRoute.page),
       ],
     ),

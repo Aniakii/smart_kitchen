@@ -265,10 +265,10 @@ String toString() {
   return 'ProductsState(allProducts: $allProducts, selectedProducts: $selectedProducts, presentedProducts: $presentedProducts, hasError: $hasError, isLoading: $isLoading, selectedRoomId: $selectedRoomId, selectedStorageUnitId: $selectedStorageUnitId, lastActionMessage: $lastActionMessage)';
 }
 
-
-
   @override
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+  Product getProductById(int id) => allProducts.firstWhere((p) => p.id == id);
+
+
 }
 
 /// @nodoc

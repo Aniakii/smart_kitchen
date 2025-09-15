@@ -6,8 +6,8 @@ import 'package:smart_kitchen/src/features/products/presentation/pages/add_produ
 import 'package:smart_kitchen/src/features/products/presentation/pages/add_product_screen/widgets/storage_unit_dropdown_widget.dart';
 import '../../../../../core/l10n/app_localizations.dart';
 import '../../../../../core/routing/app_router.dart';
-import '../../../../kitchen/domain/entities/room.dart';
-import '../../../../kitchen/domain/entities/storage_unit.dart';
+import '../../../../locations/domain/entities/room.dart';
+import '../../../../locations/domain/entities/storage_unit.dart';
 import '../../../data/datasources/product_api_service.dart';
 import '../../../domain/entities/category_products.dart';
 import '../../../domain/entities/product.dart';
